@@ -1,0 +1,122 @@
+{
+  "rubric_id": "signal_transduction_1a",
+  "title": "Tutorial Assignment 1",
+  "course_code": "BN3402",
+  "views": [
+    "microscopy",
+    "western_blot"
+  ],
+  "setup": {
+    "samples": [
+      "GFP-Protein A",
+      "GFP-Protein B",
+      "GFP-Protein C",
+      "GFP-Protein D",
+      "GFP-Protein E"
+    ],
+    "channels": [
+      "GFP"
+    ],
+    "treatments": [
+      "Growth media",
+      "Ligand",
+      "Inhibitor",
+      "Ligand + Inhibitor"
+    ],
+    "antibodies": [
+      "Anti-phospho-protein D",
+      "Anti-phospho-protein E",
+      "Anti-housekeeping gene"
+    ],
+    "cell_lines": [
+      "GFP-Protein A",
+      "GFP-Protein B",
+      "GFP-Protein C",
+      "GFP-Protein D",
+      "GFP-Protein E",
+      "GFP-nucleus + cytoplasm",
+      "GFP-nucleus",
+      "GFP-cytoplasm",
+      "GFP-plasma membrane"
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "Determine the location and phosphorylation status of Proteins A-E under different conditions.",
+      "type": "categorical_grid",
+      "expected": {
+        "Protein A": {
+          "location_-Ligand": "Cytoplasm",
+          "location_+Ligand": "Plasma membrane"
+        },
+        "Protein B": {
+          "location_-Ligand": "Plasma membrane",
+          "location_+Ligand": "Plasma membrane"
+        },
+        "Protein C": {
+          "location_-Ligand": "Cytoplasm",
+          "location_+Ligand": "Nucleus"
+        },
+        "Protein D": {
+          "location_-Ligand": "Cytoplasm",
+          "location_+Ligand": "Cytoplasm",
+          "phospho_-Ligand": "No",
+          "phospho_+Ligand": "Yes",
+          "phospho_+Inhibitor": "No",
+          "phospho_+Ligand+Inhibitor": "No"
+        },
+        "Protein E": {
+          "location_-Ligand": "Cytoplasm",
+          "location_+Ligand": "Cytoplasm",
+          "phospho_-Ligand": "No",
+          "phospho_+Ligand": "Yes",
+          "phospho_+Inhibitor": "No",
+          "phospho_+Ligand+Inhibitor": "Yes"
+        }
+      },
+      "tolerance": null,
+      "points": 18
+    },
+    {
+      "id": "q2a",
+      "prompt": "Suggest the most likely order for Proteins A-E within this pathway.",
+      "type": "ordered_sequence",
+      "expected": [
+        "Ligand",
+        "Protein B",
+        "Protein A",
+        "Protein E",
+        "Protein D",
+        "Protein C",
+        "gene expression"
+      ],
+      "tolerance": null,
+      "points": 5
+    },
+    {
+      "id": "q2b",
+      "prompt": "At which point within the pathway does the inhibitor act?",
+      "type": "free_text",
+      "expected": null,
+      "tolerance": null,
+      "points": 2
+    },
+    {
+      "id": "q2c",
+      "prompt": "Rationale for ordering the pathway components.",
+      "type": "free_text",
+      "expected": null,
+      "tolerance": null,
+      "points": 5
+    }
+  ],
+  "free_text_rubric": [
+    "Q2b: Downstream of Protein E and upstream of or inhibiting Protein D. [2 pts]",
+    "Q2c: Protein B \u2013 first, ligand\u2019s receptor given that it is constitutively associated with the plasma membrane. [1 pt]",
+    "Q2c: Protein A \u2013 second, change in localisation from cytoplasm to plasma membrane upon pathway activation. [1 pt]",
+    "Q2c: Protein C \u2013 last prior to gene expression, due to its change in localisation from cytoplasm to nucleus. [1 pt]",
+    "Q2c: Proteins E and D \u2013 cannot be ordered based on localisation alone; need western blot. [1 pt]",
+    "Q2c: Inhibitor logic: Inhibitor had no effect on Protein E phosphorylation, but prevented Protein D phosphorylation, placing E upstream of D. [1 pt]"
+  ]
+}

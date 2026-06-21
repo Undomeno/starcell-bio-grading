@@ -1,0 +1,62 @@
+{
+  "rubric_id": "entry_flow_cytometry",
+  "title": "Training Module \u2013 Flow Cytometry",
+  "course_code": "BN3402",
+  "views": [
+    "flow_cytometry"
+  ],
+  "setup": {
+    "samples": [
+      "FL1",
+      "FL2",
+      "FL3"
+    ],
+    "channels": [],
+    "treatments": [],
+    "antibodies": [],
+    "cell_lines": [
+      "FL1",
+      "FL2",
+      "FL3"
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "Percentage of FL1 somatic cells at G0/G1, S, and G2/M phases",
+      "type": "numeric_with_tolerance",
+      "expected": {
+        "G0/G1": 83,
+        "S": 4,
+        "G2/M": 13
+      },
+      "tolerance": 5,
+      "points": null
+    },
+    {
+      "id": "q2",
+      "prompt": "Percentage of FL2 somatic cells at G0/G1, S, and G2/M phases",
+      "type": "numeric_with_tolerance",
+      "expected": {
+        "G0/G1": 0,
+        "S": 44,
+        "G2/M": 54
+      },
+      "tolerance": 5,
+      "points": 3
+    },
+    {
+      "id": "q3",
+      "prompt": "Percentage of FL3 somatic cells at G0/G1, S, and G2/M phases",
+      "type": "numeric_with_tolerance",
+      "expected": {
+        "G0/G1": 59,
+        "S": 32,
+        "G2/M": 9
+      },
+      "tolerance": 5,
+      "points": 3
+    }
+  ],
+  "free_text_rubric": []
+}

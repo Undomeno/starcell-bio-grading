@@ -1,0 +1,104 @@
+{
+  "rubric_id": "bn5101_week10",
+  "title": "BN5101 Virtual laboratory Activity",
+  "course_code": "BN3402",
+  "views": [
+    "flow_cytometry",
+    "western_blot",
+    "microscopy"
+  ],
+  "setup": {
+    "samples": [
+      "Control",
+      "mutant RNA #1",
+      "mutant RNA #2",
+      "mutant RNA #3"
+    ],
+    "channels": [
+      "DAPI (blue)",
+      "alpha-tubulin (green)",
+      "gamma-tubulin (red)"
+    ],
+    "treatments": [
+      "mutant RNA #1",
+      "mutant RNA #2",
+      "mutant RNA #3"
+    ],
+    "antibodies": [
+      "Mouse anti-cyclin B",
+      "Mouse anti-cyclin E",
+      "Rabbit anti-cohesin",
+      "antibody housekeeping protein"
+    ],
+    "cell_lines": []
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "Flow cytometry results percentage of cells",
+      "type": "categorical_grid",
+      "expected": {
+        "Control": {
+          "G1": 86,
+          "S": 4,
+          "G2/M": 10
+        },
+        "mutant RNA #1": {
+          "G1": 0,
+          "S": 0,
+          "G2/M": 100
+        },
+        "mutant RNA #2": {
+          "G1": 0,
+          "S": 4,
+          "G2/M": 96
+        },
+        "mutant RNA #3": {
+          "G1": 68,
+          "S": 9,
+          "G2/M": 23
+        }
+      },
+      "tolerance": null,
+      "points": 12
+    },
+    {
+      "id": "q2",
+      "prompt": "Western Blotting analysis expression levels",
+      "type": "categorical_grid",
+      "expected": {
+        "mutant RNA #1": {
+          "Cyclin E": "Not Detected",
+          "Cyclin B": "More Expressed",
+          "Cohesin": "Uncleaved",
+          "Housekeeping protein": "Same"
+        },
+        "mutant RNA #2": {
+          "Cyclin E": "Not Detected",
+          "Cyclin B": "More Expressed",
+          "Cohesin": "Uncleaved",
+          "Housekeeping protein": "Same"
+        },
+        "mutant RNA #3": {
+          "Cyclin E": "Detected",
+          "Cyclin B": "Same",
+          "Cohesin": "Cleaved",
+          "Housekeeping protein": "Same"
+        }
+      },
+      "tolerance": null,
+      "points": 12
+    }
+  ],
+  "free_text_rubric": [
+    "Q1 Part A [3 pts]: 1 pt for observing Mutant RNAs 1 & 2 have one peak (~>100 units) compared to two in control. 1 pt for observing Mutant RNA 3 shows <2C and >4C content. 1 pt for noting Mutant RNA 3 has 2 peaks corresponding to 2C/4C but different distribution.",
+    "Q1 Part B [3 pts]: 1 pt each for identifying G2/M arrest for #1 & #2, and abnormal chromosome numbers for #3.",
+    "Q1 Part C [1 pt]: Cells in G2 and M have identical DNA content.",
+    "Q2 Part A [2 pts]: 1 pt for internal control, 1 pt for ensuring equal sample loading.",
+    "Q2 Part B [3 pts]: Each correctly identified as G2 or M (1 pt each).",
+    "Q2 Part C [3 pts]: 1 pt explaining #1 & #2 arrest based on high Cyclin B, no Cyclin E, and uncleaved cohesin. 1 pt explaining #3 based on heterogeneous population consistent with WB/Flow data.",
+    "Q3 Part A [12 pts]: Accuracy of observations for chromosomes and spindles compared to control for #1-3 (4 pts each).",
+    "Q4 Part A [15 pts]: Rationale for hypotheses covering Flow, WB, and Microscopy analyses (5 pts per condition).",
+    "Q4 Part B [12 pts]: Target proposals and justification for #1 (Separase/APC), #2 (Spindle attachment protein), and #3 (Mad2/Securin) (4 pts each)."
+  ]
+}

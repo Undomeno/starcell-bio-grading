@@ -1,0 +1,63 @@
+{
+  "rubric_id": "entry_microscopy",
+  "title": "Training Module - Microscopy",
+  "course_code": "BN3402",
+  "views": [
+    "microscopy"
+  ],
+  "setup": {
+    "samples": [
+      "Sample 1",
+      "Sample 2",
+      "Sample 3"
+    ],
+    "channels": [
+      "blue",
+      "green",
+      "red",
+      "orange"
+    ],
+    "treatments": [],
+    "antibodies": [],
+    "cell_lines": []
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "What are the organelles and/or proteins in Sample 1 that are labelled in blue, green, and red respectively?",
+      "type": "categorical_map",
+      "expected": {
+        "blue": "Nucleus",
+        "green": "Plasma Membrane",
+        "red": "Cytoplasm"
+      },
+      "tolerance": null,
+      "points": 3
+    },
+    {
+      "id": "q2",
+      "prompt": "What are the organelles and/or proteins in Sample 2 that are labelled in blue, green, and orange respectively?",
+      "type": "categorical_map",
+      "expected": {
+        "blue": "Endoplasmic Reticulum",
+        "green": "Tubulin",
+        "orange": "Actin"
+      },
+      "tolerance": null,
+      "points": 3
+    },
+    {
+      "id": "q3",
+      "prompt": "What are the organelles and/or proteins in Sample 3 that are labelled in red, green, and orange respectively?",
+      "type": "categorical_map",
+      "expected": {
+        "red": "Mitochondria",
+        "green": "Golgi Apparatus",
+        "orange": "Lysosome"
+      },
+      "tolerance": null,
+      "points": 3
+    }
+  ],
+  "free_text_rubric": []
+}

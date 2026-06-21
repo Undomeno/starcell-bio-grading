@@ -1,0 +1,10 @@
+[project]
+name = "ureca-grader"
+version = "0.1.0"
+description = "Agentic lab-grading system over StarCellBio sessions (rubric extractor + grader)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "google-genai>=2.8.0",
+    "python-docx>=1.2.0",
+]

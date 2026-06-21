@@ -1,0 +1,85 @@
+{
+  "rubric_id": "entry_western_blot",
+  "title": "Training Module \u2013 Western Blotting Data Analysis",
+  "course_code": "BN3402",
+  "views": [
+    "western_blot"
+  ],
+  "setup": {
+    "samples": [
+      "Wild Type",
+      "Mutant"
+    ],
+    "channels": [],
+    "treatments": [
+      "Ligand -",
+      "Ligand +"
+    ],
+    "antibodies": [
+      "Anti-Protein X (total)",
+      "Anti-Phospho-Tyr24"
+    ],
+    "cell_lines": [
+      "Wild Type",
+      "Mutant"
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "Expected bands for concentration vs phosphorylation regulation of Protein X (30 kDa, 20 phosphorylation sites)",
+      "type": "categorical_grid",
+      "expected": {
+        "Cellular Concentration": {
+          "Number of Band(s)": "1",
+          "Size of Band(s) (kDa)": "30"
+        },
+        "Phosphorylation": {
+          "Number of Band(s)": "2",
+          "Size of Band(s) (kDa)": "30, 31.6"
+        }
+      },
+      "tolerance": null,
+      "points": null
+    },
+    {
+      "id": "q2",
+      "prompt": "Expected results using phospho-specific antibody against Tyr24",
+      "type": "categorical_grid",
+      "expected": {
+        "Phosphorylation": {
+          "Number of Band(s)": "1",
+          "Size of Band(s) (kDa)": "~30"
+        }
+      },
+      "tolerance": null,
+      "points": null
+    },
+    {
+      "id": "q3_a",
+      "prompt": "Mode of regulation, number and size of bands for Wild Type Protein X",
+      "type": "categorical_grid",
+      "expected": {
+        "Wild Type X": {
+          "Mode of Regulation": "Phosphorylation",
+          "Number of Band(s)": "1",
+          "Size of Band(s) (kDa)": "~30"
+        }
+      },
+      "tolerance": null,
+      "points": null
+    },
+    {
+      "id": "q3_b",
+      "prompt": "Conclusion regarding mutant Protein X regulation",
+      "type": "free_text",
+      "expected": null,
+      "tolerance": null,
+      "points": null
+    }
+  ],
+  "free_text_rubric": [
+    "The mutant Protein X is phosphorylated at Tyr24 even in the absence of ligand.",
+    "Because phosphorylation at Tyr24 is associated with Protein X activation, the mutant protein exhibits constitutive activation (or is permanently activated) regardless of the presence of ligand."
+  ]
+}

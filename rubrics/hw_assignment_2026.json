@@ -1,0 +1,119 @@
+{
+  "rubric_id": "hw_assignment_2026",
+  "title": "Bioanalytics for Engineers - Homework Assignment",
+  "course_code": "BN3402",
+  "views": [
+    "microscopy",
+    "western_blot"
+  ],
+  "setup": {
+    "samples": [
+      "Protein A",
+      "Protein B",
+      "Protein C",
+      "Protein D",
+      "Protein E"
+    ],
+    "channels": [
+      "green"
+    ],
+    "treatments": [
+      "Growth media (GM) only",
+      "GM + ligand",
+      "GM + inhibitor",
+      "GM + ligand + inhibitor"
+    ],
+    "antibodies": [
+      "Anti-phospho-protein D",
+      "Anti-phospho-protein E",
+      "Anti-housekeeping gene (Control)"
+    ],
+    "cell_lines": [
+      "GFP-Proteins A, B, C, D and E",
+      "GFP-nucleus + cytoplasm",
+      "GFP-nucleus",
+      "GFP-cytoplasm",
+      "GFP-plasma membrane"
+    ]
+  },
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "Effect of pathway activation on Proteins A-E: Location and Phosphorylation",
+      "type": "categorical_grid",
+      "expected": {
+        "Protein A": {
+          "location_-ligand": "Cytoplasm",
+          "location_+ligand": "Nucleus",
+          "phospho_-ligand": "No",
+          "phospho_+ligand": "Yes"
+        },
+        "Protein B": {
+          "location_-ligand": "Plasma membrane",
+          "location_+ligand": "Plasma membrane",
+          "phospho_-ligand": "No",
+          "phospho_+ligand": "Yes"
+        },
+        "Protein C": {
+          "location_-ligand": "Cytoplasm",
+          "location_+ligand": "Plasma membrane",
+          "phospho_-ligand": "No",
+          "phospho_+ligand": "Yes"
+        },
+        "Protein D": {
+          "location_-ligand": "Cytoplasm",
+          "location_+ligand": "Cytoplasm",
+          "phospho_-ligand": "No",
+          "phospho_+ligand": "Yes"
+        },
+        "Protein E": {
+          "location_-ligand": "Cytoplasm",
+          "location_+ligand": "Cytoplasm",
+          "phospho_-ligand": "No",
+          "phospho_+ligand": "Yes"
+        }
+      },
+      "tolerance": null,
+      "points": 18
+    },
+    {
+      "id": "q2a",
+      "prompt": "Suggest the most likely order for Proteins A-E within this pathway",
+      "type": "ordered_sequence",
+      "expected": [
+        "Ligand",
+        "Protein B",
+        "Protein C",
+        "Protein D",
+        "Protein E",
+        "Protein A",
+        "Gene expression"
+      ],
+      "tolerance": null,
+      "points": 5
+    },
+    {
+      "id": "q2b",
+      "prompt": "At which point within the pathway does the inhibitor act?",
+      "type": "free_text",
+      "expected": null,
+      "tolerance": null,
+      "points": 2
+    },
+    {
+      "id": "q2c",
+      "prompt": "Describe the general rationale by which you ordered the signal transduction pathway",
+      "type": "free_text",
+      "expected": null,
+      "tolerance": null,
+      "points": 5
+    }
+  ],
+  "free_text_rubric": [
+    "Q2b: [2 pts] Downstream of Protein D and upstream of or inhibiting Protein E.",
+    "Q2c: Rationale for Protein B (1 pt): [0.5 pt] Correctly identifies Protein B as first component in pathway; [0.5 pt] Justifies by stating it is located at plasma membrane, implying it is ligand's receptor.",
+    "Q2c: Rationale for Protein C (1 pt): [0.5 pt] Correctly places Protein C after Protein B; [0.5 pt] Justifies this by describing its translocation from cytoplasm to plasma membrane upon ligand activation.",
+    "Q2c: Rationale for Protein A (1 pt): [0.5 pt] Correctly identifies Protein A as final protein component; [0.5 pt] Justifies by describing its translocation from cytoplasm to nucleus.",
+    "Q2c: Rationale for Ordering D & E (2 pts): [1 pt] Correctly describes Western Blot results for both proteins in the presence of the inhibitor (D is still phosphorylated, E is not); [1 pt] Correctly concludes from this evidence that Protein D is upstream of Protein E."
+  ]
+}
