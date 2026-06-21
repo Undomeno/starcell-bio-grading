@@ -1,0 +1,65 @@
+{
+  "rubric_id": "entry_western_blot",
+  "technique": "western_blot",
+  "title": "Training Module – Western Blotting Data Analysis",
+  "summary": "The experiment compares the expression and phosphorylation status of wild-type and mutant Protein X in response to ligand treatment using Western blotting.",
+  "key_factors": [
+    {
+      "factor": "cell lines",
+      "required": [
+        "Wild-type (WT) cell line",
+        "Mutant cell line"
+      ],
+      "why": "To compare the regulation of normal Protein X versus the mutant version."
+    },
+    {
+      "factor": "treatments",
+      "required": [
+        "Ligand absent (-)",
+        "Ligand present (+)"
+      ],
+      "why": "To observe the impact of the ligand on Protein X activity and phosphorylation."
+    },
+    {
+      "factor": "primary antibodies",
+      "required": [
+        "Anti-Protein X antibody (detects total protein)",
+        "Anti-phospho-Tyr24 Protein X antibody"
+      ],
+      "why": "The total antibody detects overall expression levels, while the phospho-specific antibody isolates the phosphorylation state of Tyr24."
+    },
+    {
+      "factor": "controls",
+      "required": [
+        "Size ladder"
+      ],
+      "why": "To identify the molecular weight (30 kDa) of Protein X bands."
+    }
+  ],
+  "sequence": [
+    {
+      "step": "Treat WT and mutant cell lines with or without ligand",
+      "why": "To induce experimental conditions for Protein X regulation."
+    },
+    {
+      "step": "Prepare cell lysates",
+      "why": "To extract cellular proteins for analysis."
+    },
+    {
+      "step": "Load lysates and size marker into gel lanes",
+      "why": "To separate proteins by molecular weight."
+    },
+    {
+      "step": "Perform gel electrophoresis and protein transfer",
+      "why": "To move separated proteins from the gel to a membrane for antibody probing."
+    },
+    {
+      "step": "Probe membrane with anti-Protein X or anti-phospho-Tyr24 antibodies",
+      "why": "To specifically detect Protein X or its phosphorylated form."
+    },
+    {
+      "step": "Detect and measure bands",
+      "why": "To analyze Protein X concentration and phosphorylation state."
+    }
+  ]
+}

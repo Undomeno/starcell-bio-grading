@@ -1,0 +1,56 @@
+{
+  "rubric_id": "entry_microscopy",
+  "technique": "microscopy",
+  "title": "Training Module - Microscopy",
+  "summary": "Use fluorescence microscopy to identify organelles and proteins in three different experimental samples by observing their specific staining colors.",
+  "key_factors": [
+    {
+      "factor": "cell lines",
+      "required": [
+        "Sample 1",
+        "Sample 2",
+        "Sample 3"
+      ],
+      "why": "These are the unknown samples that must be identified based on their organelle/protein staining patterns."
+    },
+    {
+      "factor": "channels",
+      "required": [
+        "blue",
+        "green",
+        "red",
+        "orange"
+      ],
+      "why": "Different organelles and proteins are labeled with specific fluorescent tags requiring these specific channels to be enabled for visualization."
+    },
+    {
+      "factor": "controls",
+      "required": [
+        "Nucleus",
+        "Plasma Membrane",
+        "Cytoplasm",
+        "Endoplasmic Reticulum",
+        "Tubulin",
+        "Actin",
+        "Mitochondria",
+        "Golgi Apparatus",
+        "Lysosome"
+      ],
+      "why": "These known organelle and protein images serve as reference structures to identify the staining patterns in the samples."
+    }
+  ],
+  "sequence": [
+    {
+      "step": "Set up and prepare slides for Sample 1, Sample 2, and Sample 3.",
+      "why": "Required to load the samples into the microscope for observation."
+    },
+    {
+      "step": "Enable the required fluorescence channels (blue, green, red, and orange) and turn on the laser.",
+      "why": "Necessary to excite the fluorescent labels and capture images of the organelles and proteins."
+    },
+    {
+      "step": "Image the reference organelles/proteins and the experimental samples 1, 2, and 3.",
+      "why": "Allows for the comparison of unknown sample structures against known reference labels to perform identification."
+    }
+  ]
+}

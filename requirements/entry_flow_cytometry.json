@@ -1,0 +1,51 @@
+{
+  "rubric_id": "entry_flow_cytometry",
+  "technique": "flow_cytometry",
+  "title": "Training Module – Flow Cytometry",
+  "summary": "Conduct cell cycle analysis using flow cytometry to determine the percentage of cells in G0/G1, S, and G2/M phases for specific somatic cell lines.",
+  "key_factors": [
+    {
+      "factor": "cell lines",
+      "required": [
+        "FL1 somatic cells",
+        "FL2 somatic cells",
+        "FL3 somatic cells"
+      ],
+      "why": "The experiment requires analyzing cell cycle distributions specifically for these three cell lines."
+    },
+    {
+      "factor": "DNA-content stain",
+      "required": [
+        "Propidium iodide (PI)"
+      ],
+      "why": "PI binds to DNA to provide a fluorescent signal proportional to DNA content, which is required to differentiate cell cycle phases."
+    },
+    {
+      "factor": "gating",
+      "required": [
+        "G0/G1 phase",
+        "S phase",
+        "G2/M phase"
+      ],
+      "why": "These specific cell cycle gates are required to calculate the percentage distribution of the cell population."
+    }
+  ],
+  "sequence": [
+    {
+      "step": "Select somatic cell line (FL1, FL2, or FL3)",
+      "why": "Establishes the target biological sample for analysis."
+    },
+    {
+      "step": "Stain cells with Propidium iodide (PI)",
+      "why": "Labels the DNA to allow quantification of DNA content via fluorescence."
+    },
+    {
+      "step": "Run the sample on the flow cytometer",
+      "why": "Measures the fluorescence signal for individual cells in the suspension."
+    },
+    {
+      "step": "Perform cell cycle analysis using gating",
+      "why": "Calculates the percentage of the population in G0/G1, S, and G2/M phases based on DNA content."
+    }
+  ]
+}
