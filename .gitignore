@@ -12,9 +12,6 @@ wheels/
 # env file
 .env
 
-# data from website
-data/sessions/*.json
-
 # emacs specific files
 \#*
 .~*

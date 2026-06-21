@@ -1,0 +1,92 @@
+#+TITLE: StarCellBio Procedural Grader
+
+* What this is
+
+A POC that shows that an agentic system is able to review a student's StarcellBio data to see if they are doing the experiment correctly.
+Covered techniques: microscopy, flow cytometry, western blot.
+
+* Workflow
+
+#+begin_src text
+ .docx manuals ──► scripts/extract_requirements.py ──► requirements/*.json
+   (per-technique LLM extraction tool)                      │
+                                                            ▼
+ DB session  ──► grader/session_procedure.py ──► executed procedure
+ (data/sessions/*.json)   (deterministic, no LLM)           │
+                                                            ▼
+                          grader/diagnose.py (1 LLM call) ──► verdict + issues
+                                   (uses template vocab to                │
+                                    bridge manual ↔ simulator names)      ▼
+                          grader/grade_session.py ──► Markdown report
+#+end_src
+
+1. *Requirements (what the experiment needs).* For each technique a dedicated extractor reads the ~.docx~ manual and emits the required *key factors* (cell lines, treatments, antibodies, channels, gating, controls) and the expected *sequence* of steps. One structured LLM call per manual; output is reviewed by a human and checked into ~requirements/~.
+2. *Executed procedure (what the student actually ran).* Pure-Python extraction from the session JSON. Only things actually *run* count — set-up-but-never-run is excluded. Simulator IDs are resolved to readable names via the session's embedded ~template~.
+3. *Diagnosis.* A single LLM call compares required vs executed. It is given the ~template~ vocabulary so it can match by *meaning* across the manual's wording and the simulator's names, and it only flags gaps the session can actually observe. Returns ~on_track~ + ~issues[]~ + ~did_well[]~.
+
+* File layout
+
+#+begin_src text
+  ureca/
+  ├── data/
+  │   ├── *.docx                     # the six answer-key / manual files (read-only inputs)
+  │   └── sessions/                  # real student session dumps
+  ├── scripts/
+  │   ├── extract_requirements.py    # per-technique docx → requirements/*.json  (LLM)
+  │   └── extract_rubrics.py         # docx → answer-rubric JSON; used for scoring
+  ├── requirements/                  # extracted procedural requirements
+  │   ├── entry_microscopy.json
+  │   ├── entry_flow_cytometry.json
+  │   └── entry_western_blot.json
+  └── grader/
+      ├── session_procedure.py       # session → executed procedure
+      ├── diagnose.py                # diagnostic LLM call
+      └── grade_session.py           # entrypoint → Markdown report
+#+end_src
+
+* Running it
+
+export or source ~.env~, then run:
+#+begin_src python
+  uv sync
+  uv run python grader/grade_session.py session_name
+#+end_src
+
+** 1. Update student sessions
+Database password is within starcellbio_html/StarCellBio/settings.py
+You can either go to the host machine or set up ssh tunneling to access the database.
+
+** 2. Extract requirements from the manuals
+#+begin_src bash
+  uv run python scripts/extract_requirements.py
+#+end_src
+
+** 3. Grade a session
+
+Pass one or more session filepaths; a Markdown report is printed per session. The requirement file is chosen automatically from the session's assignment name (see ~ASSIGNMENT_MAP~ in ~grade_session.py~).
+
+#+begin_src bash
+python grader/grade_session.py data/sessions/entry_western_blot__id603.json
+python grader/grade_session.py data/sessions/*.json    # batch
+#+end_src
+
+* Output
+
+A Markdown report per session:
+
+#+begin_src text
+  # Procedural review — Entry - Flow Cytometry
+  _course BN3402 · technique: flow_cytometry_
+
+  ,**⚠️ Needs correction**
+
+  The student successfully ran the flow cytometer with the required somatic cell lines but failed to perform the necessary cell cycle gating required for data analysis.
+
+  ## Issues
+  - **gating** — Gating for G0/G1, S, and G2/M phases was never performed.
+  - Although the student executed the flow cytometry runs, the 'gate_count' remains at 0 in all instances. Without setting these specific gates, it is impossible to calculate the percentage of cells in each cell cycle phase as required by the procedure.
+  ## Done correctly
+  - Used all three required somatic cell lines: FL-1, FL-2, and FL-3.
+  - Ran the samples on the flow cytometer.
+#+end_src
+
