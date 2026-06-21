@@ -1,5 +1,5 @@
 {
-  "rubric_id": "entry_flow_cytometry",
+  "requirement_id": "entry_flow_cytometry",
   "technique": "flow_cytometry",
   "title": "Training Module – Flow Cytometry",
   "summary": "Conduct cell cycle analysis using flow cytometry to determine the percentage of cells in G0/G1, S, and G2/M phases for specific somatic cell lines.",

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Reads each .docx answer key in data/, extracts its text + tables in document
 order, and asks Gemini to convert it into the structured rubric JSON.  Output

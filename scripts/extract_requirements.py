@@ -9,7 +9,7 @@ its .docx manual and makes one structured LLM call that pulls out:
                   gating, controls), each with a short `why`.
   - sequence    : the ordered steps the student is expected to perform.
 
-Output: requirements/<rubric_id>.json
+Output: requirements/<requirement_id>.json
 
     uv run python scripts/extract_requirements.py
 
@@ -33,7 +33,7 @@ DATA = ROOT / "data"
 REQUIREMENTS = ROOT / "requirements"
 DEFAULT_MODEL = os.environ.get("EXTRACT_MODEL", "gemini-3.1-flash-lite")
 
-# rubric_id -> (technique, docx filename)
+# requirement_id -> (technique, docx filename)
 TARGETS = {
     "entry_microscopy": (
         "microscopy",
@@ -82,7 +82,7 @@ antibody(ies) -> detect/measure the bands.""",
 }
 
 SCHEMA = """{
-  "rubric_id": "<given>",
+  "requirement_id": "<given>",
   "technique": "<given>",
   "title": "<assignment title from the manual>",
   "summary": "<one sentence: the experimental goal>",
@@ -127,14 +127,14 @@ def parse_json(text):
     return json.loads(text)
 
 
-def extract_one(client, model, rubric_id):
-    technique, docx = TARGETS[rubric_id]
+def extract_one(client, model, requirement_id):
+    technique, docx = TARGETS[requirement_id]
     src = DATA / docx
     if not src.exists():
         raise FileNotFoundError(src)
     doc_text = extract_docx(src)
     user = (
-        f"rubric_id: {rubric_id}\n"
+        f"requirement_id: {requirement_id}\n"
         f"technique: {technique}\n\n"
         f"{TECHNIQUE_GUIDANCE[technique]}\n\n"
         f"Manual:\n{doc_text}"
@@ -149,7 +149,7 @@ def extract_one(client, model, rubric_id):
         ),
     )
     req = parse_json(resp.text)
-    req["rubric_id"] = rubric_id
+    req["requirement_id"] = requirement_id
     req["technique"] = technique
     u = resp.usage_metadata
     if u is not None:
@@ -159,7 +159,7 @@ def extract_one(client, model, rubric_id):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("targets", nargs="*", help="rubric_ids (default: all)")
+    ap.add_argument("targets", nargs="*", help="requirement_ids (default: all)")
     ap.add_argument("--model", default=DEFAULT_MODEL)
     args = ap.parse_args()
 
@@ -177,14 +177,14 @@ def main():
     REQUIREMENTS.mkdir(exist_ok=True)
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
     print(f"model: {args.model}\n")
-    for rubric_id in targets:
-        print(f"[{rubric_id}] <- {TARGETS[rubric_id][1]}")
+    for requirement_id in targets:
+        print(f"[{requirement_id}] <- {TARGETS[requirement_id][1]}")
         try:
-            req = extract_one(client, args.model, rubric_id)
+            req = extract_one(client, args.model, requirement_id)
         except Exception as e:  # noqa: BLE001 - surface per-doc failures, keep going
             print(f"  FAILED: {type(e).__name__}: {e}", file=sys.stderr)
             continue
-        dest = REQUIREMENTS / f"{rubric_id}.json"
+        dest = REQUIREMENTS / f"{requirement_id}.json"
         dest.write_text(json.dumps(req, indent=2, ensure_ascii=False) + "\n")
         nk = len(req.get("key_factors", []))
         ns = len(req.get("sequence", []))

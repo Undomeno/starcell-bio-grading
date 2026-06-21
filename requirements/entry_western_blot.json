@@ -1,5 +1,5 @@
 {
-  "rubric_id": "entry_western_blot",
+  "requirement_id": "entry_western_blot",
   "technique": "western_blot",
   "title": "Training Module – Western Blotting Data Analysis",
   "summary": "The experiment compares the expression and phosphorylation status of wild-type and mutant Protein X in response to ligand treatment using Western blotting.",
